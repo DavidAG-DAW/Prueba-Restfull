@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.CreateProductoCommand;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.command.EditProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.CreateProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.DeleteProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.EditProductoService;
