@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.CreateProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.CreateProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.DeleteProductoService;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.service.EditProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.FindProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.mapper.ProductoMapper;
@@ -30,6 +32,7 @@ public class ProductoController {
 	private final CreateProductoService createProductoService;
     private final FindProductoService findProductoService;
 	private final DeleteProductoService deleteProductoService;
+    private final EditProductoService editProductoService;
 
 	@PostMapping //Método Post
 	public ResponseEntity<ProductoResponse> createProducto(@RequestBody ProductoRequest productoRequest) {
@@ -52,5 +55,11 @@ public class ProductoController {
         deleteProductoService.delete(id);
         return ResponseEntity.noContent().build(); //Devolvemos una respuesta vacía.
     }
-    //Marikarmen
+
+    @PutMapping("/{id}")
+    public ProductoResponse editProducto(@PathVariable int id, @RequestBody ProductoRequest productoRequest){
+        EditProductoCommand comando = ProductoMapper.toCommand(id, productoRequest);
+        Producto producto = editProductoService.update(comando);
+        return  ProductoMapper.toResponse(producto); //Respuesta
+    }
 }
