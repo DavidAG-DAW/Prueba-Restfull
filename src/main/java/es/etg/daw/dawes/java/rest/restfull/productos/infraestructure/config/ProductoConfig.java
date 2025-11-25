@@ -18,14 +18,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductoConfig {
 
-       private final ProductoRepository productoRepository;
+    private final ProductoRepository productoRepository;
+
+// Creo por configuración la instalacia que me interesa del productoRepository (desde jpa)
 
     //POST
-      @Bean
+    @Bean
     public CreateProductoUseCase createProductoUseCase() {
-		//Añadimos en la llamada una instancia de nuestro MOCK.
         return new CreateProductoUseCase(productoRepository);
     }
+
     //POST
     @Bean
     public CreateProductoService createProductoService(){

@@ -6,6 +6,7 @@ import java.util.Optional;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.ProductoId;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.repository.ProductoRepository;
+import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.db.jpa.entity.ProductoJpaEntity;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.mapper.ProductoMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -18,19 +19,19 @@ public class ProductoJpaRepositoryImpl implements ProductoRepository{
     @Override
     public Producto save(Producto t) {
 
-        ProductoEntity prod = ProductoMapper.toEntity(t);
+        ProductoJpaEntity prod = ProductoMapper.toEntity(t);
         return ProductoMapper.toDomain(repository.save(prod));
     }
 
     @Override
     public List<Producto> getAll() {
-        return ProductoMapper.toDomain(repository.findAll());
+        return (List<Producto>) ProductoMapper.toDomain(repository.findAll());
     }
 
     @Override
     public Optional<Producto> getById(ProductoId id) {
         Optional<Producto> producto = null;
-        Optional<ProductoEntity> pe = repository.findById(id.getValue());
+        Optional<ProductoJpaEntity> pe = repository.findById(id.getValue());
 
         if(pe.isEmpty()){
             producto = Optional.empty();
@@ -41,7 +42,6 @@ public class ProductoJpaRepositoryImpl implements ProductoRepository{
         return producto;
     }
 
-    @Override
     public void deteteById(ProductoId id) {
         repository.deleteById(id.getValue());
     }
@@ -52,4 +52,9 @@ public class ProductoJpaRepositoryImpl implements ProductoRepository{
         throw new UnsupportedOperationException("Unimplemented method 'getByName'");
     }
     // Hereda automáticamente métodos como: save(), findById(), findAll(), delete(), etc.
+
+    @Override
+    public void deleteById(ProductoId id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

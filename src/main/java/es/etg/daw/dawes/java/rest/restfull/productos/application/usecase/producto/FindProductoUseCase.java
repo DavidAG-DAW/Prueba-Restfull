@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 public class FindProductoUseCase {
 
     private final ProductoRepository productoRepository;
+
     public List<Producto> findAll(){
         List<Producto> productos = productoRepository.getAll();
 

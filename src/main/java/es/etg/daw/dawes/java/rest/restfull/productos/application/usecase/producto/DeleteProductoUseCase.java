@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class DeleteProductoUseCase {
-
+    
     private final ProductoRepository productoRepository;
     
     public void delete(ProductoId id){ //Lo cambiamos

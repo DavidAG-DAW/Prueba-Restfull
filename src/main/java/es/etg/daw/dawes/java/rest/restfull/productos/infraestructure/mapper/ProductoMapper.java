@@ -26,4 +26,5 @@ public class ProductoMapper {
                                     producto.getCreatedAt(),
                                     producto.getCategoria().getValue());//Agregamos la categoria.
     }
+
 }
