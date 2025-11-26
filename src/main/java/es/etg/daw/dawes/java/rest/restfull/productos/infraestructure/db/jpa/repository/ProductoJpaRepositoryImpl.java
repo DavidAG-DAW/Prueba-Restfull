@@ -1,4 +1,4 @@
-package es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.db.repository;
+package es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.db.jpa.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +25,7 @@ public class ProductoJpaRepositoryImpl implements ProductoRepository{
 
     @Override
     public List<Producto> getAll() {
-        return (List<Producto>) ProductoMapper.toDomain(repository.findAll());
+        return ProductoMapper.toDomain(repository.findAll());
     }
 
     @Override
@@ -42,19 +42,19 @@ public class ProductoJpaRepositoryImpl implements ProductoRepository{
         return producto;
     }
 
-    public void deteteById(ProductoId id) {
+    @Override
+    public void deleteById(ProductoId id) {
         repository.deleteById(id.getValue());
     }
 
     @Override
     public Optional<Producto> getByName(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getByName'");
+        ProductoJpaEntity prod = repository.findByNombre(name);
+        if(prod!=null)
+            return Optional.of(ProductoMapper.toDomain(prod));
+        else
+            return Optional.empty() ;
     }
     // Hereda automáticamente métodos como: save(), findById(), findAll(), delete(), etc.
 
-    @Override
-    public void deleteById(ProductoId id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

@@ -18,9 +18,7 @@ public class CreateProductoUseCase {
                                     .nombre(comando.nombre())
                                     .precio(comando.precio())
                                     .createdAt(LocalDateTime.now()).build();
-
-        productoRepository.save(producto);
-        return producto;
+        return productoRepository.save(producto);
 
     }
 }

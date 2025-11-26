@@ -9,15 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.db.repository.mock.CategoriaEntityJpaRepository;
+import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.db.jpa.repository.CategoriaEntityJpaRepository;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.db.repository.mock.CategoriaFactory;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.mapper.CategoriaMapper;
 
 
-
-
 @DataJpaTest(showSql = true)
-public class CartegoriaEntityJpaRepositoryTest {
+public class CategoriaEntityJpaRepositoryTest {
     
     @Autowired
     private CategoriaEntityJpaRepository repository;
