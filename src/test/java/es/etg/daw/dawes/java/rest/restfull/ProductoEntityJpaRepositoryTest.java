@@ -1,4 +1,4 @@
-package es.etg.daw.dawes.java.rest.restfull.tests;
+package es.etg.daw.dawes.java.rest.restfull;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
