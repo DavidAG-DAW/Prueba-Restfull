@@ -9,15 +9,18 @@ import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.CategoriaId;
 
 public class CategoriaFactory {
 
-    public static final Map<CategoriaId, Categoria> getDemoData(){
+    public static final Map<CategoriaId, Categoria> getDemoData() {
 
         Map<CategoriaId, Categoria> datos = new LinkedHashMap<>();
 
         datos.put(new CategoriaId(1), new Categoria(new CategoriaId(1), "Categoria 1", LocalDateTime.now()));
         datos.put(new CategoriaId(2), new Categoria(new CategoriaId(2), "Categoria 2", LocalDateTime.now()));
+
         return datos;
     }
-    public static Categoria create(){
-        return new Categoria(new CategoriaId(3),"Nueva categoria",LocalDateTime.now());
+
+    public static Categoria create() {
+        // Generamos un ID explícito para pruebas
+        return new Categoria(new CategoriaId(3), "Nueva categoria", LocalDateTime.now());
     }
 }
